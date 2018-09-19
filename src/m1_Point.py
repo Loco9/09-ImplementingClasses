@@ -59,16 +59,18 @@ class Point(object):
         return Point(self.x, self.y)
 
     def move_to(self, x, y):
+        self.xi = self.x
+        self.yi = self.y
         self.x = x
         self.y = y
         self.total = self.total + 1
-        self.move = self.move + math.sqrt(((self.x - x) ** 2) + ((self.y - y) ** 2))
+        self.move = self.move + math.sqrt(((self.x - self.xi) ** 2) + ((self.y - self.yi) ** 2))
 
     def move_by(self, dx, dy):
         self.x = self.x + dx
         self.y = self.y + dy
         self.total = self.total + 1
-        self.move = self.move + math.sqrt(((self.x - dx) ** 2) + ((self.y - dy) ** 2))
+        self.move = self.move + dx + dy
 
     def get_number_of_moves_made(self):
         return self.total
@@ -904,7 +906,7 @@ def run_test_get_distance_traveled():
         print('Actual:', p4.get_distance_traveled())
     """
     # --------------------------------------------------------------------------
-    # TODO: 11.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 11.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_distance_traveled  method specified above.
     # --------------------------------------------------------------------------
     print()
