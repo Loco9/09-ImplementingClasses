@@ -62,13 +62,13 @@ class Point(object):
         self.x = x
         self.y = y
         self.total = self.total + 1
-        self.move
+        self.move = math.sqrt(((self.x - self.start_x) ** 2) + ((self.y - self.start_y) ** 2))
 
     def move_by(self, dx, dy):
         self.x = self.x + dx
         self.y = self.y + dy
         self.total = self.total + 1
-        self.move
+        self.move = math.sqrt(((self.x - self.start_x) ** 2) + ((self.y - self.start_y) ** 2))
 
     def get_number_of_moves_made(self):
         return self.total
