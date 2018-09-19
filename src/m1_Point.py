@@ -6,7 +6,7 @@ Authors: David Mutchler, Vibha Alangar, Dave Fisher, Amanda Stouder,
          their colleagues and Logan Cody.
 """  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-
+import math
 def main():
     """ Calls the   TEST   functions in this module. """
     run_test_init()
@@ -48,6 +48,9 @@ class Point(object):
         self.x = a
         self.y = b
         self.total = 0
+        self.start_x = a
+        self.start_y = b
+        self.move = 0
 
     def __repr__(self):
         return "Point({}, {})".format(self.x, self.y)
@@ -59,21 +62,27 @@ class Point(object):
         self.x = x
         self.y = y
         self.total = self.total + 1
+        self.move
 
     def move_by(self, dx, dy):
         self.x = self.x + dx
         self.y = self.y + dy
         self.total = self.total + 1
+        self.move
 
     def get_number_of_moves_made(self):
         return self.total
 
     def get_distance_from(self, p1):
-        import math
         distance = math.sqrt(((self.x - p1.x) ** 2) + (self.y - p1.y) ** 2)
         return distance
 
     def get_distance_from_start(self):
+        self.distance = math.sqrt(((self.x - self.start_x) ** 2) + ((self.y - self.start_y) ** 2))
+        return self.distance
+
+    def get_distance_traveled(self):
+        return self.move
 
 
 def run_test_init():
@@ -213,7 +222,7 @@ def run_test_repr():
         print('Actual for p2:  ', p2)
     """
     # --------------------------------------------------------------------------
-    # TODO: 4.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 4.  Follow the same instructions as in _TODO_ 3 above,
     #           but for the  __repr__  method specified above.
     # --------------------------------------------------------------------------
     print()
@@ -883,7 +892,7 @@ def run_test_get_distance_traveled():
         print('Actual:', p4.get_distance_traveled())
     """
     # --------------------------------------------------------------------------
-    # TODO: 11.  Follow the same instructions as in _TODO_ 3 above,
+    #TODO: 11.  Follow the same instructions as in _TODO_ 3 above,
     #    but for the  get_distance_traveled  method specified above.
     # --------------------------------------------------------------------------
     print()
@@ -892,6 +901,33 @@ def run_test_get_distance_traveled():
     print('of the Point class.')
     print('-----------------------------------------------------------')
 
+    p1 = Point(20, 30)
+    p1.move_to(21, 30)
+    p1.move_to(21, 38)
+    print()
+    print('Expected p1 has traveled 9.0')
+    print('Actual:', p1.get_distance_traveled())
+
+    p1.move_by(1, 1)
+    print()
+    print('Expected p1 has now traveled about 10.414')
+    print('Actual:', p1.get_distance_traveled())
+
+    p2 = Point(0, 0)
+    p3 = Point(100, 22)
+    p4 = Point(0, 555)
+    for k in range(100):
+        p2.move_by(0, k + 1)
+        p3.move_by(k + 1, 0)
+        p4.move_to(k + 1, 555)
+
+    print()
+    print('Expected p2 has now traveled', 101 * 50.0)
+    print('Actual:', p2.get_distance_traveled())
+    print('Expected p3 has now traveled', 101 * 50.0)
+    print('Actual:', p3.get_distance_traveled())
+    print('Expected p4 has now traveled 100.0')
+    print('Actual:', p4.get_distance_traveled())
 
 def run_test_closer_to():
     """
